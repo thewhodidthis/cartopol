@@ -1,5 +1,5 @@
 ## Cartopol
-> X, y, to polar(angle, distance)
+> X, y, to angle, distance
 
 ### Setup
 ```sh
