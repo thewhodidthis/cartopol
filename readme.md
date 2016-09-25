@@ -4,7 +4,7 @@
 ### Setup
 ```sh
 npm install cartopol
-node example
+node node_modules/cartopol/example
 ```
 
 ### Usage
