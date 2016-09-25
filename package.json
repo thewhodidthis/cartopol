@@ -1,7 +1,7 @@
 {
   "name": "cartopol",
   "version": "1.0.1",
-  "description": "convert x, y to polar",
+  "description": "x, y to polar",
   "keywords": [
     "car",
     "to",
