@@ -1,11 +1,11 @@
 {
   "name": "cartopol",
   "version": "1.0.1",
-  "description": "x, y to polar",
+  "description": "convert x, y to polar",
   "keywords": [
-    "",
-    "",
-    ""
+    "car",
+    "to",
+    "pol"
   ],
   "main": "index.js",
   "homepage": "https://github.com/thewhodidthis/cartopol#readme",
