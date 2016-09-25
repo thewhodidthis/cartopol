@@ -6,7 +6,7 @@
 # Install from npm
 npm install cartopol
 
-# Try it out
+# Run example
 node node_modules/cartopol/example
 ```
 
