@@ -10,8 +10,8 @@ const rl = readline.createInterface({
 
 rl.on('line', input => {
   let i = input.split(' ');
-  let x = parseInt(i[0]);
-  let y = parseInt(i[1]) || x;
+  let x = i[0];
+  let y = i[1];
 
   console.log(cartopol(x, y));
 });
