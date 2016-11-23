@@ -1,6 +1,4 @@
-'use strict';
-
-function cartopol(x, y) {
+export default function cartopol(x, y) {
   var x = parseFloat(x) || 0;
   var y = parseFloat(y) || 0;
 
@@ -8,6 +6,5 @@ function cartopol(x, y) {
     theta: Math.atan2(y, x),
     r: Math.sqrt(x * x + y * y)
   };
-}
+};
 
-module.exports = cartopol;
