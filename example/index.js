@@ -1,8 +1,18 @@
 'use strict';
 
 const car2pol = require('../');
-const padleft = n => (`    ${n}`).slice(-4);
+
 const toDeg = rad => (rad * 180) / Math.PI;
+const roundTo = n => n.toFixed(2);
+const padleft = x => (`    ${x}`).slice(-4);
+const padAndTrim = n => padleft(roundTo(n));
+
+const tabs = 'x,y,angle,distance'.split(',');
+
+// Print labels
+tabs.forEach((tab) => {
+  process.stdout.write(`${tab}\t`);
+});
 
 // Report each character
 process.stdin.setRawMode(true);
@@ -11,10 +21,14 @@ process.stdin.setRawMode(true);
 process.stdout.write('\x1b[?1005h');
 process.stdout.write('\x1b[?1003h');
 
+// Start fresh
+process.stdout.write('\n');
+
 // Follow mouse
 process.stdout.on('data', (chunk) => {
   const input = chunk.toString('utf-8');
 
+  // Ctrl+c
   if (input === '\u0003') {
     // Done
     process.exit();
@@ -24,24 +38,38 @@ process.stdout.on('data', (chunk) => {
   const w = process.stdout.columns;
   const h = process.stdout.rows;
 
-  // Mouse coordinates
-  const x = input.charCodeAt(4) - 32;
-  const y = input.charCodeAt(5) - 32;
-
-  // Center
-  const position = {
-    x: x - w * 0.5,
-    y: y - h * 0.5,
+  // Screen middle
+  const center = {
+    x: Math.floor(w * 0.5),
+    y: Math.floor(h * 0.5),
   };
 
-  const result = car2pol(position.x, position.y);
-  const data = Object.assign(position, result, { t: toDeg(result.t) });
-  const output = JSON.stringify(data);
+  // Mouse coordinates
+  const mouse = {
+    x: input.charCodeAt(4) - 32,
+    y: input.charCodeAt(5) - 32,
+  };
 
-  // Progress report
+  // From center
+  const car = {
+    x: mouse.x - center.x,
+    y: mouse.y - center.y,
+  };
+
+  // Convert
+  const pol = car2pol(car.x, car.y);
+  const deg = {
+    t: toDeg(pol.t)
+  };
+
+  // Merge and stringify
+  const res = Object.assign({}, car, pol, deg);
+  const out = Object.keys(res).map(k => roundTo(res[k])).reduce((acc, val) => `${acc}\t${val}`);
+
+  // Same line print out
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
-  process.stdout.write(output);
+  process.stdout.write(out);
 });
 
 process.on('exit', () => {
@@ -49,7 +77,7 @@ process.on('exit', () => {
   process.stdout.write('\x1b[?1005l');
   process.stdout.write('\x1b[?1003l');
 
-  // Quit on a new line
+  // To be safe
   process.stdout.write('\n');
 });
 
