@@ -15,3 +15,13 @@ test('return value compares with known result', (t) => {
   t.equals(car2pol().t, 0);
 });
 
+test('will not throw if misconfigured', (t) => {
+  try {
+    car2pol(NaN, Infinity);
+    t.pass('should not throw');
+  } catch (e) {
+    t.fail();
+  }
+
+  t.end();
+});
