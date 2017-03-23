@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Cartesian to polar util
+ * Helps convert to polar
  * @module cartopol
  * @param {Number} x - Across
  * @param {Number} y - Up or down

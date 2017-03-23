@@ -1,5 +1,5 @@
 /**
- * Cartesian to polar conversion
+ * Helps convert to polar
  * @module cartopol
  * @param {Number} x - Across
  * @param {Number} y - Up or down
