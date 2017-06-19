@@ -22,8 +22,8 @@
   },
   "scripts": {
     "test": "node test",
-    "lint": "eslint index.es",
-    "start": "rollup -c && uglifyjs dist/cartopol.js -cm > dist/cartopol.min.js"
+    "lint": "eslint index.es test/*.js",
+    "start": "rollup -c && uglifyjs dist/cartopol.js -cmo dist/cartopol.min.js"
   },
   "engines": {
     "node": ">=4.2.4",
