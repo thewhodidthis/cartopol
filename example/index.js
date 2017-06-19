@@ -1,11 +1,7 @@
-'use strict';
-
 const car2pol = require('../');
 
 const toDeg = rad => (rad * 180) / Math.PI;
 const roundTo = n => n.toFixed(2);
-const padleft = x => (`    ${x}`).slice(-4);
-const padAndTrim = n => padleft(roundTo(n));
 
 const tabs = 'x,y,angle,distance'.split(',');
 
@@ -58,9 +54,7 @@ process.stdout.on('data', (chunk) => {
 
   // Convert
   const pol = car2pol(car.x, car.y);
-  const deg = {
-    t: toDeg(pol.t)
-  };
+  const deg = { t: toDeg(pol.t) };
 
   // Merge and stringify
   const res = Object.assign({}, car, pol, deg);
