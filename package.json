@@ -2,11 +2,6 @@
   "name": "cartopol",
   "version": "2.0.5",
   "description": "x, y to polar",
-  "keywords": [
-    "car",
-    "2",
-    "pol"
-  ],
   "main": "index.js",
   "module": "index.es",
   "homepage": "https://github.com/thewhodidthis/cartopol#readme",
@@ -17,13 +12,16 @@
   "bugs": {
     "url": "https://github.com/thewhodidthis/cartopol/issues"
   },
-  "directories": {
-    "example": "example"
-  },
   "scripts": {
+    "pretest": "eslint test.js",
     "test": "node test",
-    "lint": "eslint index.es example/*.js test/*.js",
-    "start": "rollup -c && uglifyjs dist/cartopol.js -cmo dist/cartopol.min.js"
+    "prestart": "eslint index.es",
+    "start": "rollup -f cjs index.es | buble > index.js",
+    "preexample": "eslint example.js",
+    "example": "node example"
+  },
+  "eslintConfig": {
+    "extends": "@thewhodidthis"
   },
   "engines": {
     "node": ">=4.2.4",
@@ -31,16 +29,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "latest",
-    "babel-plugin-external-helpers": "latest",
-    "babel-preset-latest": "latest",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest",
+    "@thewhodidthis/eslint-config": "latest",
+    "buble": "latest",
     "rollup": "latest",
-    "rollup-plugin-babel": "latest",
-    "tape": "latest",
-    "uglify-js": "latest"
+    "tape": "latest"
   },
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
   "license": "Unlicense"
