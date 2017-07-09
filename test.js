@@ -1,5 +1,5 @@
 const test = require('tape');
-const car2pol = require('../');
+const car2pol = require('./');
 
 test('return value is of type and contains', (t) => {
   t.plan(2);
