@@ -1,3 +1,5 @@
+'use strict'
+
 const car2pol = require('./')
 
 const toDeg = rad => (rad * 180) / Math.PI
