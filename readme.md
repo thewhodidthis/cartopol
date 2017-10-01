@@ -3,8 +3,8 @@
 
 ### Setup
 ```sh
-# Install from npm
-npm install cartopol
+# Install from github
+npm install thewhodidthis/cartopol
 
 # Run example
 node node_modules/cartopol/example
@@ -14,4 +14,3 @@ node node_modules/cartopol/example
 ```js
 console.log(require('cartopol')());
 ```
-
