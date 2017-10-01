@@ -5,25 +5,25 @@ const car2pol = require('./')
 const toDeg = rad => (rad * 180) / Math.PI
 const roundTo = n => n.toFixed(2)
 
-const tabs = 'x,y,angle,distance'.split(',')
+const { stdout, stdin } = process
 
 // Print labels
-tabs.forEach((tab) => {
-  process.stdout.write(`${tab}\t`)
+'x,y,angle,distance'.split(',').forEach((tab) => {
+  stdout.write(`${tab}\t`)
 })
 
 // Report each character
-process.stdin.setRawMode(true)
+stdin.setRawMode(true)
 
 // Enable mouse reporting
-process.stdout.write('\x1b[?1005h')
-process.stdout.write('\x1b[?1003h')
+stdout.write('\x1b[?1005h')
+stdout.write('\x1b[?1003h')
 
 // Start fresh
-process.stdout.write('\n')
+stdout.write('\n')
 
 // Follow mouse
-process.stdout.on('data', (chunk) => {
+stdout.on('data', (chunk) => {
   const input = chunk.toString('utf-8')
 
   // Ctrl+c
@@ -33,8 +33,7 @@ process.stdout.on('data', (chunk) => {
   }
 
   // Box size
-  const w = process.stdout.columns
-  const h = process.stdout.rows
+  const { columns: w, rows: h } = stdout
 
   // Screen middle
   const center = {
@@ -63,16 +62,16 @@ process.stdout.on('data', (chunk) => {
   const out = Object.keys(res).map(k => roundTo(res[k])).reduce((acc, val) => `${acc}\t${val}`)
 
   // Same line print out
-  process.stdout.clearLine()
-  process.stdout.cursorTo(0)
-  process.stdout.write(out)
+  stdout.clearLine()
+  stdout.cursorTo(0)
+  stdout.write(out)
 })
 
 process.on('exit', () => {
   // Turn off mouse reporting
-  process.stdout.write('\x1b[?1005l')
-  process.stdout.write('\x1b[?1003l')
+  stdout.write('\x1b[?1005l')
+  stdout.write('\x1b[?1003l')
 
   // To be safe
-  process.stdout.write('\n')
+  stdout.write('\n')
 })
