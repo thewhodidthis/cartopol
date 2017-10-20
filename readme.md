@@ -1,9 +1,8 @@
-## Cartopol
 > Poor man's cartesian to polar calculator
 
 ### Setup
 ```sh
-# Install from github
+# Fetch latest from github
 npm install thewhodidthis/cartopol
 
 # Run example
