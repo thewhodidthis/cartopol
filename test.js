@@ -1,29 +1,22 @@
 'use strict'
 
-const test = require('tape')
+const { equal, ok, deepEqual, fail } = require('tapeless')
 const car2pol = require('./')
 
-test('return value is of type and contains', (t) => {
-  t.plan(2)
+equal(typeof car2pol(), 'object', 'should be equal', 'return value is of type and contains')
+deepEqual(car2pol(0, 1), { r: 1, t: Math.PI / 2 }, 'should be equivalent')
 
-  t.equal(typeof car2pol(), 'object')
-  t.deepEqual(car2pol(0, 1), { r: 1, t: Math.PI / 2 })
-})
+const { r } = car2pol(1.5)
 
-test('return value compares with known result', (t) => {
-  t.plan(2)
+equal(r, Math.sqrt(2.25), 'should be equal', 'return value compares with known result')
 
-  t.equals(car2pol(1.5).r, Math.sqrt(2.25))
-  t.equals(car2pol().t, 0)
-})
+const { t } = car2pol()
 
-test('will not throw if misconfigured', (t) => {
-  try {
-    car2pol(NaN, Infinity)
-    t.pass('should not throw')
-  } catch (e) {
-    t.fail()
-  }
+equal(t, 0, 'should be equal')
 
-  t.end()
-})
+try {
+  car2pol(NaN, Infinity)
+  ok(true, 'should not throw', 'will not throw if misconfigured')
+} catch ({ message }) {
+  fail(message)
+}
