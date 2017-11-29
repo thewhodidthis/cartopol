@@ -3,7 +3,7 @@
 ### Setup
 ```sh
 # Fetch latest from github
-npm install thewhodidthis/cartopol
+npm i thewhodidthis/cartopol
 
 # Run example
 node node_modules/cartopol/example
