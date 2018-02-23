@@ -1,16 +1,18 @@
 'use strict'
 
-const car2pol = require('./')
+const bender = require('./')
 
-const toDeg = rad => (rad * 180) / Math.PI
-const roundTo = n => n.toFixed(2)
+const RAD = 180 / Math.PI
 
 const { stdout, stdin } = process
 
 // Print labels
-'x,y,angle,distance'.split(',').forEach((tab) => {
+'x y angle reach'.split(' ').forEach((tab) => {
   stdout.write(`${tab}\t`)
 })
+
+// Next
+stdout.write('\n')
 
 // Report each character
 stdin.setRawMode(true)
@@ -18,9 +20,6 @@ stdin.setRawMode(true)
 // Enable mouse reporting
 stdout.write('\x1b[?1005h')
 stdout.write('\x1b[?1003h')
-
-// Start fresh
-stdout.write('\n')
 
 // Follow mouse
 stdout.on('data', (chunk) => {
@@ -35,12 +34,6 @@ stdout.on('data', (chunk) => {
   // Box size
   const { columns: w, rows: h } = stdout
 
-  // Screen middle
-  const center = {
-    x: Math.floor(w * 0.5),
-    y: Math.floor(h * 0.5)
-  }
-
   // Mouse coordinates
   const mouse = {
     x: input.charCodeAt(4) - 32,
@@ -48,23 +41,24 @@ stdout.on('data', (chunk) => {
   }
 
   // From center
-  const car = {
-    x: mouse.x - center.x,
-    y: mouse.y - center.y
+  const delta = {
+    x: mouse.x - Math.floor(w * 0.5),
+    y: mouse.y - Math.floor(h * 0.5)
   }
 
   // Convert
-  const pol = car2pol(car.x, car.y)
-  const deg = { t: toDeg(pol.t) }
+  const polar = bender(delta.x, delta.y)
+  const theta = { t: polar.t * RAD }
 
   // Merge and stringify
-  const res = Object.assign({}, car, pol, deg)
-  const out = Object.keys(res).map(k => roundTo(res[k])).reduce((acc, val) => `${acc}\t${val}`)
+  const store = Object.assign({}, delta, polar, theta)
+  const score = Object.keys(store).map(k => store[k]).map(k => k.toFixed(2)).reduce((k, v) => `${k}\t${v}`)
 
   // Same line print out
   stdout.clearLine()
   stdout.cursorTo(0)
-  stdout.write(out)
+
+  stdout.write(score)
 })
 
 process.on('exit', () => {
@@ -72,6 +66,6 @@ process.on('exit', () => {
   stdout.write('\x1b[?1005l')
   stdout.write('\x1b[?1003l')
 
-  // To be safe
+  // Be safe
   stdout.write('\n')
 })
