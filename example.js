@@ -14,15 +14,15 @@ const { stdout, stdin } = process
 // Next
 stdout.write('\n')
 
-// Report each character
-stdin.setRawMode(true)
-
 // Enable mouse reporting
 stdout.write('\x1b[?1005h')
 stdout.write('\x1b[?1003h')
 
+// Report each character
+stdin.setRawMode(true)
+
 // Follow mouse
-stdout.on('data', (chunk) => {
+stdin.on('data', (chunk) => {
   const input = chunk.toString('utf-8')
 
   // Ctrl+c
