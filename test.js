@@ -3,20 +3,31 @@
 const { equal, ok, deepEqual, fail } = require('tapeless')
 const bender = require('./')
 
-equal(typeof bender(), 'object', 'should be equal', 'return value is of type and contains')
-deepEqual(bender(0, 1), { r: 1, t: Math.PI / 2 }, 'should be equivalent')
+equal
+  .describe('should be equal')
+  .test(typeof bender(), 'object')
+
+deepEqual
+  .describe('should be equivalent', 'return value is of type and contains')
+  .test(bender(0, 1), { r: 1, t: Math.PI / 2 })
 
 const { r } = bender(1.5)
 
-equal(r, Math.sqrt(2.25), 'should be equal', 'return value compares with known result')
+equal
+  .describe('should be equal', 'return value compares with known result')
+  .test(r, Math.sqrt(2.25))
 
 const { t } = bender()
 
-equal(t, 0, 'should be equal')
+equal
+  .test(t, 0)
+  .describe('should be equal')
 
 try {
   bender(NaN, Infinity)
-  ok(true, 'should not throw', 'will not throw if misconfigured')
+  ok
+    .describe('should not throw', 'will not throw if misconfigured')
+    .test(true)
 } catch ({ message }) {
   fail(message)
 }
