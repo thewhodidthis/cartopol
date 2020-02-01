@@ -1,6 +1,6 @@
 {
   "name": "cartopol",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "x, y to polar",
   "main": "index",
   "module": "index.mjs",
