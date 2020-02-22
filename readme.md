@@ -11,5 +11,5 @@ node node_modules/cartopol/example
 
 ### Usage
 ```js
-console.log(require('cartopol')());
+console.log(require('cartopol')())
 ```
