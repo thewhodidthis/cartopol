@@ -20,4 +20,3 @@ var cartopol = function (x, y) {
 };
 
 module.exports = cartopol;
-
