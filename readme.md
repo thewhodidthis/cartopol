@@ -1,15 +1,30 @@
-> Poor man's cartesian to polar calculator
+## about
 
-### Setup
+Poor man's cartesian to polar calculator.
+
+## setup
+
+Fetch latest from GitHub:
+
 ```sh
-# Fetch latest from github
-npm i thewhodidthis/cartopol
-
-# Run example
-node node_modules/cartopol/example
+# Add to 'package.json' dependencies
+npm install thewhodidthis/cartopol
 ```
 
-### Usage
+## usage
+
+Try the example:
+
+```sh
+node node_modules/poltocar/example
+```
+
+Give it a set of coordinates, _x_ and _y_, get an `{ t, r }` object in return.
+
 ```js
 console.log(require('cartopol')())
 ```
+
+## see also
+
+- [poltocar](https://github.com/thewhodidthis/poltocar)
