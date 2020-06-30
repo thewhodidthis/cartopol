@@ -20,11 +20,11 @@
   "module": "index.mjs",
   "scripts": {
     "preexample": "eslint example.js",
-    "example": "node example",
+    "example": "node example.js",
     "prestart": "eslint index.mjs",
     "start": "rollup -f cjs index.mjs | buble -o index.js",
     "pretest": "eslint test.js",
-    "test": "node test"
+    "test": "node test.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
