@@ -1,10 +1,9 @@
-'use strict'
-
-const bender = require('./')
-
-const RAD = 180 / Math.PI
+import process from 'process'
+import bender from './main.js'
 
 const { stdout, stdin } = process
+
+const RAD = 180 / Math.PI
 
 // Print labels
 'x y angle reach'.split(' ').forEach((tab) => {
@@ -48,7 +47,7 @@ stdin.on('data', (chunk) => {
 
   // Convert
   const polar = bender(delta.x, delta.y)
-  const theta = { t: polar.t * RAD }
+  const theta = { azimuth: polar.azimuth * RAD }
 
   // Merge and stringify
   const store = Object.assign({}, delta, polar, theta)
