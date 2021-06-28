@@ -9,7 +9,7 @@
  */
 const cartopol = (x = 0, y = 0) => ({
   azimuth: Math.atan2(y, x),
-  radius: Math.sqrt((x * x) + (y * y))
+  radius: Math.sqrt((x * x) + (y * y)),
 })
 
 export default cartopol

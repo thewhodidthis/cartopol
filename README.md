@@ -22,7 +22,7 @@ node node_modules/poltocar/example
 Give it _x_ and _y_ cartesian coordinates, get an `{ azimuth, radius }` object literal in return.
 
 ```js
-console.log(require('cartopol')())
+console.log(require("cartopol")())
 ```
 
 ## see also

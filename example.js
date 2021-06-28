@@ -1,31 +1,31 @@
-import process from 'process'
-import bender from './main.js'
+import process from "process"
+import bender from "./main.js"
 
 const { stdout, stdin } = process
 
 const RAD = 180 / Math.PI
 
 // Print labels
-'x y angle reach'.split(' ').forEach((tab) => {
+"x y angle reach".split(" ").forEach((tab) => {
   stdout.write(`${tab}\t`)
 })
 
 // Next
-stdout.write('\n')
+stdout.write("\n")
 
 // Enable mouse reporting
-stdout.write('\x1b[?1005h')
-stdout.write('\x1b[?1003h')
+stdout.write("\x1b[?1005h")
+stdout.write("\x1b[?1003h")
 
 // Report each character
 stdin.setRawMode(true)
 
 // Follow mouse
-stdin.on('data', (chunk) => {
-  const input = chunk.toString('utf-8')
+stdin.on("data", (chunk) => {
+  const input = chunk.toString("utf-8")
 
   // Ctrl+c
-  if (input === '\u0003') {
+  if (input === "\u0003") {
     // Done
     process.exit()
   }
@@ -36,13 +36,13 @@ stdin.on('data', (chunk) => {
   // Mouse coordinates
   const mouse = {
     x: input.charCodeAt(4) - 32,
-    y: input.charCodeAt(5) - 32
+    y: input.charCodeAt(5) - 32,
   }
 
   // From center
   const delta = {
     x: mouse.x - Math.floor(w * 0.5),
-    y: mouse.y - Math.floor(h * 0.5)
+    y: mouse.y - Math.floor(h * 0.5),
   }
 
   // Convert
@@ -60,11 +60,11 @@ stdin.on('data', (chunk) => {
   stdout.write(score)
 })
 
-process.on('exit', () => {
+process.on("exit", () => {
   // Turn off mouse reporting
-  stdout.write('\x1b[?1005l')
-  stdout.write('\x1b[?1003l')
+  stdout.write("\x1b[?1005l")
+  stdout.write("\x1b[?1003l")
 
   // Be safe
-  stdout.write('\n')
+  stdout.write("\n")
 })
