@@ -4,10 +4,10 @@ Poor man's cartesian to polar calculator.
 
 ## setup
 
-Find the [latest version](https://npm.im/cartopol) on the _npm_ registry:
+Download from the _npm_ registry:
 
 ```sh
-# Add to 'package.json' dependencies
+# Add to package.json
 npm install @thewhodidthis/cartopol
 ```
 
